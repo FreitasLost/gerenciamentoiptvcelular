@@ -1,0 +1,714 @@
+<html><head><base href="https://websim.joyful-finance.com/"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Gerenciamento SKFLIX IPTV</title><style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('https://example.com/default-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-size: 16px; /* Slightly smaller base font size */
+    min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header {
+    background-color: #1a4b84;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+}
+main {
+    padding: 1rem; /* Reduced padding */
+    width: 95%; /* Use percentage width */
+    max-width: 1200px; /* Keep max-width */
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h1, h2 {
+    margin-bottom: 1rem;
+}
+h1 {
+    font-size: 2.5em; /* Larger heading */
+}
+h2 {
+    font-size: 2em; /* Larger subheading */
+}
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+input, select, button {
+    margin-bottom: 1rem;
+    padding: 0.7rem; /* Increased from 0.5rem */
+    font-size: 1.1rem; /* Slightly larger than body text */
+    width: 100%; /* Full width for form elements */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+button {
+    background-color: #1a4b84;
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1rem; /* Increased */
+    font-size: 1.1rem; /* Slightly larger */
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+button:hover {
+    background-color: #143963;
+}
+.tabs {
+    display: flex;
+    margin-bottom: 1rem;
+    flex-wrap: wrap; /* Allow tabs to wrap on small screens */
+}
+.tab-button {
+    padding: 0.5rem 1rem;
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    flex: 1 0 auto; /* Allow buttons to grow and shrink */
+    margin-bottom: 0.5rem; /* Add some space between wrapped buttons */
+}
+.tab-button.active {
+    background-color: #1a4b84;
+    color: white;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.9rem; /* Slightly smaller font for tables */
+}
+th, td {
+    padding: 0.7rem; /* Increased from 0.5rem */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+.total {
+    font-weight: bold;
+}
+.paid {
+    background-color: #d4edda;
+}
+.unpaid {
+    background-color: #f8d7da;
+}
+.undefined {
+    background-color: #ffeeba;
+}
+.overdue {
+    background-color: #ffa07a;
+}
+.btn-paid {
+    background-color: #1a4b84;
+}
+.btn-paid:hover {
+    background-color: #143963;
+}
+.btn-unpaid {
+    background-color: #dc3545;
+}
+.btn-unpaid:hover {
+    background-color: #c82333;
+}
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+.btn-delete:hover {
+    background-color: #c82333;
+}
+.btn-info {
+    background-color: #1a4b84;
+}
+.btn-info:hover {
+    background-color: #143963;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 15px; /* Reduced padding */
+    border: 1px solid #888;
+    width: 95%; /* Specific width for mobile */
+    max-width: 700px; /* Increased from 500px */
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#embedContainer {
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+}
+#embedFrame {
+    border: none;
+    width: 100%;
+    height: 400px; /* Reduced height for mobile */
+}
+#loginContainer {
+    max-width: 400px; /* Increased from 300px */
+    width: 95%; /* Added for responsiveness */
+    margin: 0 auto; /* Changed from margin: 100px auto; */
+    padding: 20px; /* Increased padding */
+    background-color: rgba(244, 244, 244, 0.9); /* Added some transparency */
+    border-radius: 10px; /* Increased border radius */
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Added shadow for depth */
+}
+#loginForm {
+    display: flex;
+    flex-direction: column;
+}
+#loginForm input {
+    margin-bottom: 15px; /* Increased margin */
+    padding: 10px; /* Increased padding */
+    width: 100%; /* Make inputs full width */
+    border: 1px solid #ddd; /* Added border */
+    border-radius: 5px; /* Added border radius */
+}
+#logoutButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+</style></head><body>
+<div id="loginContainer">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Nome de Usuário" required="">
+        <input type="password" id="password" placeholder="Senha" required="">
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+<div id="mainContent" style="display: none;">
+    <header>
+        <h1>Gerenciamento SKFLIX IPTV</h1>
+    </header>
+    <main>
+        <h2>Adicionar Cliente</h2>
+        <form id="clientForm">
+            <input type="text" id="clientName" placeholder="Nome do Cliente" required="">
+            <input type="text" id="clientUsername" placeholder="Nome de Usuário" required="">
+            <input type="password" id="clientPassword" placeholder="Senha" required="">
+            <button type="submit">Adicionar Cliente</button>
+        </form>
+
+        <h2>Lista de Clientes</h2>
+        <table id="clientTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nome de Usuário</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>Adicionar Pagamento</h2>
+        <form id="paymentForm">
+            <input type="date" id="date" required="">
+            <input type="text" id="description" placeholder="Descrição" required="">
+            <select id="type" required="">
+                <option value="credit">Crédito</option>
+                <option value="debit">Débito</option>
+            </select>
+            <input type="number" id="amount" placeholder="Valor" step="0.01" required="">
+            <select id="clientSelect" required="">
+                <option value="">Selecione um cliente</option>
+            </select>
+            <button type="submit">Salvar Pagamento</button>
+        </form>
+
+        <h2>Pagamentos</h2>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="regular-payments">Pagamentos Regulares</button>
+            <button class="tab-button" data-tab="overdue-payments">Vencidos</button>
+        </div>
+        <div id="regular-payments" class="tab-content active">
+            <table id="financeTable">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="total">Total</td>
+                        <td id="totalAmount" class="total" colspan="2">R$ 0.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div id="overdue-payments" class="tab-content">
+            <table id="overdueTable">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <h2>Exportar/Importar Dados</h2>
+        <button id="exportButton">Exportar Dados</button>
+        <button id="importButton">Importar Dados</button>
+        <input type="file" id="importFile" style="display:none;">
+
+        <h2>Incorporar Site Externo</h2>
+        <form id="embedForm">
+            <input type="url" id="embedUrl" placeholder="https://exemplo.com" required="">
+            <button type="submit">Incorporar Site</button>
+        </form>
+        <div id="embedContainer">
+            <iframe id="embedFrame" src="about:blank" width="100%" height="400px"></iframe>
+        </div>
+
+        <h2>Editar Imagem de Fundo</h2>
+        <form id="backgroundForm">
+            <input type="url" id="backgroundUrl" placeholder="URL da imagem de fundo">
+            <input type="file" id="backgroundFile" accept="image/*">
+            <button type="submit">Atualizar Imagem de Fundo</button>
+        </form>
+    </main>
+</div>
+<button id="logoutButton" style="display: none;">Sair</button>
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('infoModal').style.display='none'">×</span>
+        <h2>Informações do Cliente</h2>
+        <p><strong>Nome:</strong> <span id="modalName"></span></p>
+        <p><strong>Nome de Usuário:</strong> <span id="modalUsername"></span></p>
+        <p><strong>Senha:</strong> <span id="modalPassword"></span></p>
+    </div>
+</div>
+
+<script>
+const users = [
+    { username: 'admin', password: 'admin123' },
+    { username: 'user1', password: 'pass1' },
+    { username: 'user2', password: 'pass2' }
+];
+
+let currentUser = null;
+
+function login(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        currentUser = user;
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        document.getElementById('logoutButton').style.display = 'block';
+        loadBackgroundImage();
+    } else {
+        alert('Usuário ou senha inválidos');
+    }
+}
+
+function logout() {
+    currentUser = null;
+    document.getElementById('loginContainer').style.display = 'block';
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('logoutButton').style.display = 'none';
+    document.getElementById('loginForm').reset();
+    loadBackgroundImage();
+}
+
+let clients = JSON.parse(localStorage.getItem('clients')) || [];
+let finances = JSON.parse(localStorage.getItem('finances')) || [];
+
+function addClient(event) {
+    event.preventDefault();
+    const client = {
+        id: Date.now(),
+        name: document.getElementById('clientName').value,
+        username: document.getElementById('clientUsername').value,
+        password: document.getElementById('clientPassword').value
+    };
+    clients.push(client);
+    localStorage.setItem('clients', JSON.stringify(clients));
+    updateClientTable();
+    updateClientSelect();
+    event.target.reset();
+}
+
+function updateClientTable() {
+    const tbody = document.querySelector('#clientTable tbody');
+    tbody.innerHTML = '';
+    clients.forEach(client => {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = client.name;
+        row.insertCell(1).textContent = client.username;
+        const actionCell = row.insertCell(2);
+        
+        const infoButton = document.createElement('button');
+        infoButton.textContent = 'Info';
+        infoButton.className = 'btn-info';
+        infoButton.onclick = () => showClientInfo(client);
+        actionCell.appendChild(infoButton);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Apagar';
+        deleteButton.className = 'btn-delete';
+        deleteButton.onclick = () => deleteClient(client.id);
+        actionCell.appendChild(deleteButton);
+    });
+}
+
+function updateClientSelect() {
+    const select = document.getElementById('clientSelect');
+    select.innerHTML = '<option value="">Selecione um cliente</option>';
+    clients.forEach(client => {
+        const option = document.createElement('option');
+        option.value = client.id;
+        option.textContent = client.name;
+        select.appendChild(option);
+    });
+}
+
+function showClientInfo(client) {
+    document.getElementById('modalName').textContent = client.name;
+    document.getElementById('modalUsername').textContent = client.username;
+    document.getElementById('modalPassword').textContent = client.password;
+    document.getElementById('infoModal').style.display = 'block';
+}
+
+function deleteClient(id) {
+    if (confirm('Tem certeza que deseja apagar este cliente?')) {
+        clients = clients.filter(client => client.id !== id);
+        finances = finances.filter(payment => payment.clientId !== id);
+        localStorage.setItem('clients', JSON.stringify(clients));
+        localStorage.setItem('finances', JSON.stringify(finances));
+        updateClientTable();
+        updateClientSelect();
+        updateFinanceTable();
+    }
+}
+
+function savePayment(event) {
+    event.preventDefault();
+    const startDate = new Date(document.getElementById('date').value);
+    const payment = {
+        id: Date.now(),
+        startDate: startDate.toISOString().split('T')[0],
+        description: document.getElementById('description').value,
+        type: document.getElementById('type').value,
+        amount: parseFloat(document.getElementById('amount').value),
+        clientId: document.getElementById('clientSelect').value,
+        status: 'undefined',
+        recurrenceId: Date.now()
+    };
+    finances.push(payment);
+    generateRecurringPayments(payment);
+    localStorage.setItem('finances', JSON.stringify(finances));
+    updateFinanceTable();
+    event.target.reset();
+}
+
+function generateRecurringPayments(initialPayment) {
+    const today = new Date();
+    let currentDate = new Date(initialPayment.startDate);
+    while (currentDate <= today) {
+        currentDate.setDate(currentDate.getDate() + 30);
+        if (currentDate <= today) {
+            removeOutdatedEntries(initialPayment.recurrenceId, currentDate);
+            
+            const recurringPayment = {
+                ...initialPayment,
+                id: Date.now() + Math.random(),
+                startDate: currentDate.toISOString().split('T')[0],
+                status: 'unpaid',
+                recurrenceId: initialPayment.recurrenceId
+            };
+            finances.push(recurringPayment);
+        }
+    }
+    localStorage.setItem('finances', JSON.stringify(finances));
+}
+
+function removeOutdatedEntries(recurrenceId, currentDate) {
+    finances = finances.filter(payment => {
+        if (payment.recurrenceId === recurrenceId) {
+            const paymentDate = new Date(payment.startDate);
+            const thirtyDaysAgo = new Date(currentDate);
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            return paymentDate >= thirtyDaysAgo;
+        }
+        return true;
+    });
+}
+
+function updateFinanceTable() {
+    const regularTbody = document.querySelector('#financeTable tbody');
+    const overdueTbody = document.querySelector('#overdueTable tbody');
+    regularTbody.innerHTML = '';
+    overdueTbody.innerHTML = '';
+    let total = 0;
+    let uniqueClients = new Set();
+    let unpaidTotal = 0;
+
+    finances.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)).forEach(payment => {
+        const row = document.createElement('tr');
+        row.className = payment.status;
+        row.innerHTML = `
+            <td data-label="Data">${payment.startDate}</td>
+            <td data-label="Descrição">${payment.description}</td>
+            <td data-label="Tipo">${payment.type === 'credit' ? 'Crédito' : 'Débito'}</td>
+            <td data-label="Valor">R$ ${payment.amount.toFixed(2)}</td>
+            <td data-label="Cliente">${clients.find(client => client.id == payment.clientId)?.name || 'Cliente Desconhecido'}</td>
+            <td data-label="Status">${getStatusText(payment.status)}</td>
+            <td data-label="Ação">
+                <button class="btn-paid" onclick="toggleStatus(${payment.id}, 'paid')">Pago</button>
+                <button class="btn-unpaid" onclick="toggleStatus(${payment.id}, 'unpaid')">Não Pago</button>
+                <button class="btn-delete" onclick="deletePayment(${payment.id})">Apagar</button>
+            </td>
+        `;
+
+        if (payment.status === 'overdue') {
+            overdueTbody.appendChild(row);
+        } else {
+            regularTbody.appendChild(row);
+        }
+
+        if (payment.status === 'paid') {
+            total += payment.type === 'credit' ? payment.amount : -payment.amount;
+            uniqueClients.add(payment.clientId);
+        } else {
+            unpaidTotal += payment.type === 'credit' ? payment.amount : -payment.amount;
+        }
+    });
+
+    const clientDiscount = uniqueClients.size * 5;
+    total -= clientDiscount;
+
+    document.getElementById('totalAmount').textContent = `R$ ${total.toFixed(2)}`;
+    
+    const discountNote = document.createElement('tr');
+    discountNote.innerHTML = `<td colspan="7">Desconto de clientes: R$ ${clientDiscount.toFixed(2)} (R$ 5,00 por cliente com pagamentos pagos)</td>`;
+    regularTbody.appendChild(discountNote);
+
+    const unpaidNote = document.createElement('tr');
+    unpaidNote.innerHTML = `<td colspan="7">Total não pago: R$ ${unpaidTotal.toFixed(2)}</td>`;
+    regularTbody.appendChild(unpaidNote);
+}
+
+function getStatusText(status) {
+    switch(status) {
+        case 'paid':
+            return 'Pago';
+        case 'unpaid':
+            return 'Não Pago';
+        case 'overdue':
+            return 'Vencido';
+        default:
+            return 'Indefinido';
+    }
+}
+
+function toggleStatus(id, newStatus) {
+    const index = finances.findIndex(payment => payment.id === id);
+    if (index !== -1) {
+        finances[index].status = newStatus;
+        localStorage.setItem('finances', JSON.stringify(finances));
+        updateFinanceTable();
+    }
+}
+
+function deletePayment(id) {
+    if (confirm('Tem certeza que deseja apagar este pagamento?')) {
+        finances = finances.filter(payment => payment.id !== id);
+        localStorage.setItem('finances', JSON.stringify(finances));
+        updateFinanceTable();
+    }
+}
+
+function exportData() {
+    const data = {
+        clients: clients,
+        finances: finances
+    };
+    const dataStr = JSON.stringify(data);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    
+    const currentDateTime = new Date().toLocaleString().replace(/[/,:]/g, '-').replace(/\s/g, '_');
+    const exportFileDefaultName = `skflix_iptv_${currentDateTime}.txt`;
+
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+}
+
+function importData() {
+    const fileInput = document.getElementById('importFile');
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (data.clients && data.finances) {
+                    clients = data.clients;
+                    finances = data.finances;
+                    localStorage.setItem('clients', JSON.stringify(clients));
+                    localStorage.setItem('finances', JSON.stringify(finances));
+                    updateClientTable();
+                    updateClientSelect();
+                    updateFinanceTable();
+                    alert('Dados importados com sucesso!');
+                } else {
+                    throw new Error('Formato de dados inválido');
+                }
+            } catch (error) {
+                alert('Erro ao importar dados: ' + error.message);
+            }
+        };
+        reader.readAsText(file);
+    }
+}
+
+function embedWebsite(event) {
+    event.preventDefault();
+    const url = document.getElementById('embedUrl').value;
+    const iframe = document.getElementById('embedFrame');
+    iframe.src = url;
+}
+
+function checkPaymentStatuses() {
+    const today = new Date();
+    finances.forEach(payment => {
+        const paymentDate = new Date(payment.startDate);
+        const thirtyDaysAgo = new Date(today);
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        
+        if (paymentDate <= today && payment.status !== 'paid') {
+            if (paymentDate <= thirtyDaysAgo) {
+                payment.status = 'overdue';
+            } else {
+                payment.status = 'unpaid';
+            }
+        }
+    });
+    removeOutdatedEntries(null, today);
+    localStorage.setItem('finances', JSON.stringify(finances));
+    updateFinanceTable();
+}
+
+function initTabs() {
+    const tabs = document.querySelectorAll('.tab-button');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+}
+
+function updateBackgroundImage(event) {
+    event.preventDefault();
+    const urlInput = document.getElementById('backgroundUrl');
+    const fileInput = document.getElementById('backgroundFile');
+    
+    if (urlInput.value) {
+        document.body.style.backgroundImage = `url(${urlInput.value})`;
+        localStorage.setItem('backgroundImage', urlInput.value);
+    } else if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.body.style.backgroundImage = `url(${e.target.result})`;
+            localStorage.setItem('backgroundImage', e.target.result);
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
+
+function loadBackgroundImage() {
+    const savedBackground = localStorage.getItem('backgroundImage');
+    if (savedBackground) {
+        document.body.style.backgroundImage = `url(${savedBackground})`;
+    } else {
+        document.body.style.backgroundImage = 'url("https://example.com/default-background.jpg")';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('loginForm').addEventListener('submit', login);
+    document.getElementById('logoutButton').addEventListener('click', logout);
+    document.getElementById('clientForm').addEventListener('submit', addClient);
+    document.getElementById('paymentForm').addEventListener('submit', savePayment);
+    document.getElementById('exportButton').addEventListener('click', exportData);
+    document.getElementById('importButton').addEventListener('click', () => document.getElementById('importFile').click());
+    document.getElementById('importFile').addEventListener('change', importData);
+    document.getElementById('embedForm').addEventListener('submit', embedWebsite);
+    document.getElementById('backgroundForm').addEventListener('submit', updateBackgroundImage);
+
+    updateClientTable();
+    updateClientSelect();
+    updateFinanceTable();
+    initTabs();
+    loadBackgroundImage();
+});
+
+checkPaymentStatuses();
+setInterval(checkPaymentStatuses, 86400000);
+</script>
+</body></html>
